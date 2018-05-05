@@ -47,5 +47,8 @@ body {
   width: 100vw;
   display: flex;
   position: relative;
+  clear: left;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

@@ -24,8 +24,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
     justify-content: space-evenly;
+    position: absolute;
+    margin: 0 auto;
+    float: left;
+    height: 100%;
+    /* padding-right: 40%; */
 }
 
 .main .card {
@@ -110,8 +115,12 @@
 .sidebar {
     padding: 3rem 2rem;
     display: flex;
-    width: 300px;
+    width: 320px;
     height: 100%;
+    position: absolute;
+    float: left;
+    margin: 0 auto;
+    right: 0%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -125,6 +134,7 @@
 }
 .camera img {
     transform: scale(0);
+    display: none;
     border-radius: 50%;
     width: 400px;
     border: 20px solid var(--white);
@@ -197,7 +207,8 @@
 /* WIDE SCREEN ANINAMATION  */
 @media (min-width: 91rem) {
     .main {
-        padding: 4rem;
+        /* padding: 4rem; */
+        width: 85%;
     }
 
     .main .card {
@@ -240,6 +251,9 @@
     }
     .card-2-user-info h4 {
         font-size: 1.8rem;
+    }
+    .sidebar {
+        width: 330px;
     }
 }
 
@@ -336,5 +350,5 @@
     display: none;
 } */
 /* .camera {
-  display: none;
+    display: block;
 } */

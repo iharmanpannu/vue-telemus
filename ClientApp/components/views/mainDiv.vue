@@ -1,25 +1,15 @@
 <template>
   <div class="main-container">
-
-    <div  class="main">
-      <!-- <main class="main " :style="{display: isCamera? 'none': 'flex'} "> -->
-        <transition
-
-  @enter="enter"
-  @leave="leave"
-
- >
+    <div ref="mainDiv"  class="main">
       <div v-if="mainCard" class="card">
         <div class="img">
           <img src="../../assets/img/girl.png" alt="girl">
         </div>
         <div class="headings ">
-
           <h1>Rachael Warren</h1>
           <h3>
             Fullstack Developer
           </h3>
-
         </div>
         <div class="message">
           <p>Since Rachael is pretty much only working with CBRE, there isn't much chance for feedback, but working with Rachael
@@ -30,18 +20,12 @@
         </div>
         <div class="progress-line"></div>
       </div>
-        </transition>
     </div>
-
-
-  <transition
-    @enter="enter"
-  >
-    <div  class="sidebar">
-      <!-- <section :style="{width: isCamera?'100%':'20%'}" class="sidebar"> -->
+<!-- SIDE BAR  -->
+    <div ref="sidebarTwo"  class="sidebar">
       <img class="logo" src="../../assets/svg/logo.svg" alt="logo">
-      <div v-if="fullSideBar" class="camera">
-        <img src="../../assets/img/man.png" alt="">
+      <div  class="camera">
+        <img ref="camera" src="../../assets/img/man.png" alt="">
       </div>
       <div class="user-info">
         <img src="../../assets/img/man.png" alt="">
@@ -50,67 +34,87 @@
       </div>
 
       <div class="camera-logo">
-        <a @click="openCamera">
+        <a @click="runCamera">
           <img src="../../assets/svg/facescan.svg" alt="">
         </a>
         <span class="scanner"></span>
       </div>
     </div>
-</transition>
   </div>
 </template>
 
 <script>
-// import sidebar from "./sidebar";
 import anime from "animejs";
 export default {
   data() {
     return { mainCard: true, fullSideBar: false };
   },
-
   methods: {
-    openCamera() {
+    runCamera() {
       this.mainCard = !this.mainCard;
-      this.fullSideBar = !this.fullSideBar;
+      if (!this.mainCard) this.cameraOpen();
+      else if (this.mainCard) this.cameraClosed();
     },
-    beforeEnter: function(el) {
-      Velocity(el, { display: "none" });
-    },
-    enter: function(el, done) {
-      Velocity(
-        el,
-        { translateY: 0 },
-        { display: "flex" },
-        { duration: 800 },
-        { complete: done }
-      );
-      // Velocity(el, { fontSize: "1em" });
-    },
-    leave: function(el, done) {
-      Velocity(
-        el,
-        { translateX: -1000, display: "none" },
-        [1, -0.79, 0.83, 0.67],
+    cameraOpen() {
+      const vm = this;
+      var seq = [
         {
-          complete: done
+          e: vm.$refs.mainDiv,
+          p: { translateX: 1000, opacity: 0.1, scale: 0.5 },
+          o: { duration: 1000 }
+        },
+        {
+          e: vm.$refs.sidebarTwo,
+          p: { width: "100%" },
+          o: { duration: 1000, sequenceQueue: false }
+        },
+        {
+          e: vm.$refs.camera,
+          p: "transition.bounceRightIn",
+          o: { duration: 1200, delay: 300, sequenceQueue: false }
         }
-      );
+      ];
+      Velocity.RunSequence(seq);
+    },
+    cameraClosed() {
+      const vm = this;
+      var seq = [
+        {
+          e: vm.$refs.mainDiv,
+          p: { translateX: 0, opacity: 1, scale: 1 },
+          o: { duration: 1000 }
+        },
+        {
+          e: vm.$refs.sidebarTwo,
+          p: { width: "330px" },
+          o: { duration: 1000, sequenceQueue: false }
+        },
+        {
+          e: vm.$refs.camera,
+          p: "transition.bounceRightOut",
+          o: { duration: 1000, sequenceQueue: false }
+        }
+      ];
+      Velocity.RunSequence(seq);
+    },
+    mounted() {
+      window.addEventListener("keypress", e => {
+        if (e.keyCode === 32) {
+          return this.cameraOpen();
+        }
+      });
+      // setInterval(() => {
+      //   anime({
+      //     targets: ".card",
+      //     translateY: [
+      //       { value: -1000, duration: 2000 },
+      //       { value: 0, duration: 2000 }
+      //     ],
+      //     scale: [{ value: 0.5, duration: 2000 }, { value: 1, duration: 2000 }],
+      //     easing: "easeInOutCirc"
+      //   });
+      // }, 2000);
     }
-  },
-  mounted() {
-    // setInterval(() => {
-    //   anime({
-    //     targets: ".card",
-    //     translateY: [
-    //       { value: -1000, duration: 2000 },
-    //       { value: 0, duration: 2000 }
-    //     ],
-    //     scale: [{ value: 0.5, duration: 2000 }, { value: 1, duration: 2000 }],
-    //     // loop: true,
-    //     // delay: 2000,
-    //     easing: "easeInOutCirc"
-    //   });
-    // }, 5000);
   }
 };
 </script>
