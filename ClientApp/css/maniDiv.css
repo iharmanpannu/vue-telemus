@@ -283,8 +283,8 @@
 .progress-line:before {
     background-color: var(--darkestGray);
     content: "";
-    -webkit-animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    -webkit-animation: running-progress 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: running-progress 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 @-webkit-keyframes running-progress {
     0% {

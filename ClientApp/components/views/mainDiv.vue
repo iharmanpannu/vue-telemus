@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div ref="mainDiv"  class="main">
-      <div v-if="mainCard" ref="card" class="card">
+      <div ref="card" class="card">
         <div class="img">
           <img src="../../assets/img/girl.png" alt="girl">
         </div>
@@ -103,12 +103,15 @@ export default {
       const seq = [
         {
           e: vm.$refs.card,
-          p: "transition.slideUpBigOut"
+          p: "transition.slideUpBigOut",
+          // p: "transition.expandOut",
+          o: { delay: 600, duration: 1000 }
         },
         {
           e: vm.$refs.card,
+          p: "transition.expandIn",
           p: "transition.slideUpBigIn",
-          o: { delay: 600, duration: 1000 }
+          o: { duration: 1000 }
         }
       ];
       Velocity.RunSequence(seq);
