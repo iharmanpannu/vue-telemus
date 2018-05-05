@@ -37,9 +37,12 @@
         <a @click="runCamera">
           <img src="../../assets/svg/facescan.svg" alt="">
         </a>
-        <span class="scanner"></span>
+        <span v-if="! mainCard" class="scanner"></span>
       </div>
     </div>
+    <a @click="cameraClosed" v-if="!mainCard" href="#" class="float">
+      <i class="fas fa-arrow-left arrow-float"></i>
+    </a>
   </div>
 </template>
 
@@ -53,7 +56,6 @@ export default {
     runCamera() {
       this.mainCard = !this.mainCard;
       if (!this.mainCard) this.cameraOpen();
-      else if (this.mainCard) this.cameraClosed();
     },
     cameraOpen() {
       const vm = this;
