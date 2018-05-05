@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div ref="mainDiv"  class="main">
-      <div v-if="mainCard" class="card">
+      <div v-if="mainCard" ref="card" class="card">
         <div class="img">
           <img src="../../assets/img/girl.png" alt="girl">
         </div>
@@ -78,7 +78,7 @@ export default {
     },
     cameraClosed() {
       const vm = this;
-      var seq = [
+      const seq = [
         {
           e: vm.$refs.mainDiv,
           p: { translateX: 0, opacity: 1, scale: 1 },
@@ -92,7 +92,23 @@ export default {
         {
           e: vm.$refs.camera,
           p: "transition.bounceRightOut",
+
           o: { duration: 1000, sequenceQueue: false }
+        }
+      ];
+      Velocity.RunSequence(seq);
+    },
+    slideCards() {
+      const vm = this;
+      const seq = [
+        {
+          e: vm.$refs.card,
+          p: "transition.slideUpBigOut"
+        },
+        {
+          e: vm.$refs.card,
+          p: "transition.slideUpBigIn",
+          o: { delay: 600, duration: 1000 }
         }
       ];
       Velocity.RunSequence(seq);
@@ -105,16 +121,19 @@ export default {
       }
     });
     setInterval(() => {
-      anime({
-        targets: ".card",
-        translateY: [
-          { value: -1000, duration: 2000 },
-          { value: 0, duration: 2000 }
-        ],
-        scale: [{ value: 0.5, duration: 2000 }, { value: 1, duration: 2000 }],
-        easing: "easeInOutCirc"
-      });
-    }, 2000);
+      this.slideCards();
+    }, 3000);
+    // setInterval(() => {
+    //   anime({
+    //     targets: ".card",
+    //     translateY: [
+    //       { value: -1000, duration: 2000 },
+    //       { value: 0, duration: 2000 }
+    //     ],
+    //     scale: [{ value: 0.5, duration: 2000 }, { value: 1, duration: 2000 }],
+    //     easing: "easeInOutCirc"
+    //   });
+    // }, 2000);
   }
 };
 </script>
