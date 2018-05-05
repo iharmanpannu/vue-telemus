@@ -96,25 +96,25 @@ export default {
         }
       ];
       Velocity.RunSequence(seq);
-    },
-    mounted() {
-      window.addEventListener("keypress", e => {
-        if (e.keyCode === 32) {
-          return this.cameraOpen();
-        }
-      });
-      // setInterval(() => {
-      //   anime({
-      //     targets: ".card",
-      //     translateY: [
-      //       { value: -1000, duration: 2000 },
-      //       { value: 0, duration: 2000 }
-      //     ],
-      //     scale: [{ value: 0.5, duration: 2000 }, { value: 1, duration: 2000 }],
-      //     easing: "easeInOutCirc"
-      //   });
-      // }, 2000);
     }
+  },
+  mounted() {
+    window.addEventListener("keypress", e => {
+      if (e.keyCode === 32) {
+        return this.runCamera();
+      }
+    });
+    setInterval(() => {
+      anime({
+        targets: ".card",
+        translateY: [
+          { value: -1000, duration: 2000 },
+          { value: 0, duration: 2000 }
+        ],
+        scale: [{ value: 0.5, duration: 2000 }, { value: 1, duration: 2000 }],
+        easing: "easeInOutCirc"
+      });
+    }, 2000);
   }
 };
 </script>
