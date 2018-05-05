@@ -70,7 +70,9 @@ export default {
         },
         {
           e: vm.$refs.camera,
-          p: "transition.bounceRightIn",
+          p: "transition.expandIn",
+          // p: { scale: 1 },
+          // p: "transition.bounceRightIn",
           o: { duration: 1200, delay: 300, sequenceQueue: false }
         }
       ];
@@ -91,8 +93,9 @@ export default {
         },
         {
           e: vm.$refs.camera,
-          p: "transition.bounceRightOut",
-
+          p: "transition.expandOut",
+          // p: "transition.bounceRightOut",
+          // p: { scale: 0 },
           o: { duration: 1000, sequenceQueue: false }
         }
       ];

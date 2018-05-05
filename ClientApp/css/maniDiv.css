@@ -133,7 +133,7 @@
     padding: 1.8rem;
 }
 .camera img {
-    transform: scale(0);
+    /* transform: scale(0); */
     display: none;
     border-radius: 50%;
     width: 400px;
