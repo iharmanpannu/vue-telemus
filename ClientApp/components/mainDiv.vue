@@ -3,7 +3,7 @@
     <div ref="mainDiv"  class="main">
       <div ref="card" class="card">
         <div class="img">
-          <img src="../../assets/img/girl.png" alt="girl">
+          <img src="../assets/img/girl.png" alt="girl">
         </div>
         <div class="headings ">
           <h1>Rachael Warren</h1>
@@ -23,19 +23,17 @@
     </div>
 <!-- SIDE BAR  -->
     <div ref="sidebarTwo"  class="sidebar">
-      <img class="logo" src="../../assets/svg/logo.svg" alt="logo">
-      <div  class="camera">
-        <img ref="camera" src="../../assets/img/man.png" alt="">
-      </div>
+      <img class="logo" src="../assets/svg/logo.svg" alt="logo">
+      <camera ref="camera"/>
       <div class="user-info">
-        <img src="../../assets/img/man.png" alt="">
+        <img src="../assets/img/man.png" alt="">
         <h3>Marcus Laurens</h3>
         <h4>Art Director</h4>
       </div>
 
       <div class="camera-logo">
         <a @click="runCamera">
-          <img src="../../assets/svg/facescan.svg" alt="">
+          <img src="../assets/svg/facescan.svg" alt="">
         </a>
         <span v-if="! mainCard" class="scanner"></span>
       </div>
@@ -47,8 +45,10 @@
 </template>
 
 <script>
-import anime from "animejs";
+// import anime from "animejs";
+import camera from "./camera";
 export default {
+  components: { camera },
   data() {
     return { mainCard: true, fullSideBar: false };
   },
@@ -147,5 +147,5 @@ export default {
 </script>
 
 <style >
-@import url("../../css/maniDiv.css");
+@import url("../css/maniDiv.css");
 </style>
